@@ -1,29 +1,35 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Header';
-import MovieCard from './components/MovieCard';
+// Hook de React para manejar estado
+import { useState } from "react"
+
+// Componentes
+import Header from "./components/Header"
+
+// Vistas
+import Home from "./pages/Home"
+import Cartelera from "./pages/bilboard"
+import Detalle from "./pages/Details"
+import Food from "./pages/Food"
+import Otros from "./pages/Otros"
 
 function App() {
-  // Lista de películas basada en tu imagen
-  const movies = [
-    { id: 1, title: 'Duna: Parte Dos', imageUrl: 'https://via.placeholder.com/250x150?text=Duna' },
-    { id: 2, title: 'Kung Fu Panda 4', imageUrl: 'https://via.placeholder.com/250x150?text=Kung+Fu+Panda' },
-    { id: 3, title: 'Intensamente 2', imageUrl: 'https://via.placeholder.com/250x150?text=Intensamente' }
-  ];
+  // Estado que controla qué vista se muestra
+  const [vistaActual, setVistaActual] = useState("home")
 
   return (
-    <div className="app-container">
-      {/* 1. Uso del componente Header */}
-      <Header />
+    // Contenedor raíz de la aplicación
+    <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
+      {/* Header puede cambiar la vista */}
+      <Header cambiarVista={setVistaActual} />
 
-      <main className="movies-container">
-        {/* 2. Mapeamos la lista para crear las tarjetas dinámicamente */}
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} title={movie.title} imageUrl={movie.imageUrl} />
-        ))}
-      </main>
+      {/* Renderizado condicional de vistas */}
+      {vistaActual === "home" && <Home cambiarVista={setVistaActual} />}
+      {vistaActual === "cartelera" && <Cartelera cambiarVista={setVistaActual} />}
+      {vistaActual === "detalle" && <Detalle />}
+      {vistaActual === "food" && <Food />}
+      {vistaActual === "otros" && <Otros />}
     </div>
-  );
+  )
 }
 
-export default App;
+// Exportamos App
+export default App
