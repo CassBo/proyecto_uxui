@@ -5,22 +5,22 @@ function Otros() {
     {
       titulo: "Promociones",
       descripcion: "2x1 todos los miércoles en funciones 2D y 3D.",
-      imagen: "https://static.vecteezy.com/system/resources/previews/002/294/859/non_2x/flash-sale-web-banner-design-e-commerce-vector.jpg"
+      imagen: "https://preview.citicinemas.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fciticinemas-store%2FPromotion-33%2Fimage%2FaENgrwkkWOmO%2Frefill%20palomitas.jpg&w=1920&q=75"
     },
     {
       titulo: "Membresía CineFan",
       descripcion: "Acumula puntos por cada visita y canjéalos por entradas y combos.",
-      imagen: "https://static.vecteezy.com/system/resources/previews/006/828/785/non_2x/gold-vip-card-design-template-vector.jpg"
+      imagen: "https://m.cinesargentinos.com.ar/static/archivos/47864"
     },
     {
       titulo: "Preventas Exclusivas",
       descripcion: "Asegura tu lugar para los estrenos más esperados del año.",
-      imagen: "https://static.vecteezy.com/system/resources/previews/002/453/533/non_2x/coming-soon-background-with-starlight-vector.jpg"
+      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCO_a15Yz2gMprhbKWVTePtYlXUk-BK_5BuA&s"
     },
     {
       titulo: "Formatos Especiales",
       descripcion: "Vive la experiencia IMAX, 4DX y Salas VIP con servicio a la butaca.",
-      imagen: "https://static.vecteezy.com/system/resources/previews/008/323/878/non_2x/cinema-movie-theater-interior-with-screen-and-red-seats-vector.jpg"
+      imagen: "https://sacnkprodpecms.blob.core.windows.net/content/formats/REAL%203D-76f51577-4d7c-4b68-b88a-46a3ed92cb77.webp"
     }
   ];
 

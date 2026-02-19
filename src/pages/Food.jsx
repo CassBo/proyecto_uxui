@@ -3,10 +3,10 @@ import Button from '../components/Button';
 
 function Food() {
   const foodItems = [
-    { id: 1, name: 'Palomitas Grandes', price: '$80', image: 'https://static.vecteezy.com/system/resources/previews/023/214/285/non_2x/popcorn-bucket-food-cinema-snack-3d-illustration-png.png' },
-    { id: 2, name: 'Refresco Grande', price: '$60', image: 'https://static.vecteezy.com/system/resources/previews/027/144/656/non_2x/soft-drink-cup-with-ice-and-straw-takeaway-soda-beverage-3d-illustration-png.png' },
-    { id: 3, name: 'Nachos con Queso', price: '$75', image: 'https://static.vecteezy.com/system/resources/previews/025/269/449/non_2x/nachos-with-cheese-and-jalapeno-peppers-mexican-food-3d-illustration-png.png' },
-    { id: 4, name: 'Hot Dog', price: '$55', image: 'https://static.vecteezy.com/system/resources/previews/025/005/088/non_2x/hot-dog-fast-food-3d-illustration-png.png' },
+    { id: 1, name: 'Palomitas Grandes', price: '$80', image: 'https://m.media-amazon.com/images/I/71WCHcFxA8L.jpg' },
+    { id: 2, name: 'Refresco Grande', price: '$60', image: 'https://api-middleware-mcd.mcdonaldscupones.com/media/image/product$CCO%20GDE%20300X225.png/200/200/original?country=mx' },
+    { id: 3, name: 'Nachos con Queso', price: '$75', image: 'https://cdn7.kiwilimon.com/recetaimagen/15795/1200x600/7826.jpg.webp' },
+    { id: 4, name: 'Hot Dog', price: '$55', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Hot_dog_with_mustard.png/1280px-Hot_dog_with_mustard.png' },
   ];
 
   return (
