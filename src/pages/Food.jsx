@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../components/Button';
+import '../App.css'; // Importamos los estilos globales
 
 function Food() {
   const foodItems = [
@@ -10,33 +11,16 @@ function Food() {
   ];
 
   return (
-    <main
-      style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        gap: "24px",
-        padding: "24px"
-      }}
-    >
+    <main className="responsive-grid">
       {foodItems.map((item) => (
-        <div key={item.id} style={{ 
-          border: '1px solid #ddd', 
-          borderRadius: '8px', 
-          padding: '16px', 
-          textAlign: 'center',
-          backgroundColor: 'white',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
-        }}>
-          <img src={item.image} alt={item.name} style={{ width: '100%', height: '180px', objectFit: 'contain', marginBottom: '16px' }} />
-          <div>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: '1.2rem' }}>{item.name}</h3>
-            <p style={{ fontWeight: 'bold', color: '#555', fontSize: '1.1rem', marginBottom: '16px' }}>{item.price}</p>
-            <Button text="Agregar" onClick={() => alert(`Agregado: ${item.name}`)} />
+        <div key={item.id} className="movie-card">
+          <img src={item.image} alt={item.name} className="movie-image" />
+          <div className="movie-info">
+            <h3>{item.name}</h3>
+            <p style={{ fontWeight: 'bold', color: '#555', marginBottom: '1rem' }}>{item.price}</p>
+            <div style={{ marginTop: 'auto' }}>
+              <Button text="Agregar" onClick={() => alert(`Agregado: ${item.name}`)} />
+            </div>
           </div>
         </div>
       ))}

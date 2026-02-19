@@ -39,8 +39,8 @@ body {
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  width: 250px;
-  /* height: 200px;  Quitamos altura fija para que se adapte a la imagen */
+  width: 100%; /* Ocupa el ancho disponible en el grid */
+  height: 100%; /* Asegura que todas las tarjetas tengan la misma altura en la fila */
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -49,7 +49,7 @@ body {
 
 .movie-image {
   width: 100%;
-  height: 150px;
+  height: 250px; /* Altura fija para consistencia */
   object-fit: cover;
 }
 
@@ -59,6 +59,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  gap: 10px;
 }
 
 .movie-card h3 {
@@ -69,19 +70,56 @@ body {
 
 /* Estilos del Botón */
 .custom-button {
-  background-color: #ffc107; /* Amarillo */
+  background-color: #272e5c; /* Azul oscuro */
+  color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
+  border-radius: 4px;
+  padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  color: #000;
   width: 100%; /* Botón ocupa todo el ancho de la tarjeta */
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
   margin-top: auto; /* Empuja el botón hacia abajo si hay espacio extra */
 }
 
 .custom-button:hover {
-  background-color: #e0a800; /* Un amarillo un poco más oscuro al pasar el mouse */
+  background-color: #b20710; /* Rojo oscuro al pasar el mouse */
+}
+
+/* Clases utilitarias para responsividad */
+.responsive-grid {
+  max-width: 100%; /* Ahora ocupa todo el ancho de la pantalla */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Tarjetas base un poco más anchas */
+  gap: 24px;
+  padding: 24px;
+}
+
+.responsive-detail {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .responsive-grid {
+    padding: 16px;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Una columna en móviles muy pequeños */
+  }
+
+  /* En móviles, quizás queramos que las tarjetas sean de ancho completo o 2 columnas si caben */
+  /* minmax(250px, 1fr) ya maneja esto bien, pero si la pantalla es < 250px + padding, forzamos 100% */
 }

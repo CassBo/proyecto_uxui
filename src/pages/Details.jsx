@@ -1,13 +1,9 @@
+import '../App.css'; // Importamos los estilos globales
+
 // Vista de detalle de una película
 function Detalle() {
   return (
-    <main
-      style={{
-        padding: "24px",
-        maxWidth: "800px",
-        margin: "0 auto"
-      }}
-    >
+    <main className="responsive-detail">
       <h2>¿Cómo llegué aquí?</h2>
 
       <img
@@ -15,12 +11,15 @@ function Detalle() {
         alt="Nombre de la película"
         style={{
           width: "100%",
+          height: "auto",
           borderRadius: "8px",
-          marginBottom: "16px"
+          marginBottom: "16px",
+          maxHeight: "500px", // Limitamos la altura en pantallas grandes
+          objectFit: "contain"
         }}
       />
 
-      <p>
+      <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
         AQUÍ VA UNA SINÓPSIS DE LA PELÍCULA
       </p>
     </main>

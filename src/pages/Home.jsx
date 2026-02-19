@@ -1,18 +1,10 @@
 // Importamos la tarjeta reutilizable
 import MovieCard from "../components/MovieCard"
+import '../App.css'; // Importamos los estilos globales
 
 function Home({ cambiarVista }) {
   return (
-    <main
-      style={{
-        maxWidth: "1200px", // Controla el ancho en pantallas grandes
-        margin: "0 auto",   // Centra el contenido
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        gap: "24px",
-        padding: "24px"
-      }}
-    >
+    <main className="responsive-grid">
       <MovieCard
         title="Avatar: Fuego y Cenizas"
         image="https://m.media-amazon.com/images/M/MV5BYjZjNDdkZmYtYmFlZS00NzU5LThhNTEtMjkyNGJhNzk5OWUzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
