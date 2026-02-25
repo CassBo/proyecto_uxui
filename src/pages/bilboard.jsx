@@ -1,23 +1,31 @@
 import MovieCard from "../components/MovieCard"
-import '../App.css'; // Importamos los estilos globales
+import peliculas from "../detalles.json"
 
-function Cartelera({ cambiarVista }) {
+function Cartelera({ verDetalle, favoritos, toggleFavorito }) {
   return (
-    <main className="responsive-grid">
-      <MovieCard
-        title="Shingeki No Kyojin: The Final Season"
-        image="https://m.media-amazon.com/images/M/MV5BMzVhOGMzYzQtNzgyMi00NjZmLWEzYjUtMjQ2NDE3Njk4MmRkXkEyXkFqcGc@._V1_.jpg"
-        onVerDetalle={() => cambiarVista("detalle")}
-      />
-
-      <MovieCard
-        title="Bob Esponja: Al Rescate"
-        image="https://m.media-amazon.com/images/M/MV5BNjAyZDQwOTktZjc0Yi00MzNjLWI1NmUtODI2ZjJmYWRjOTA3XkEyXkFqcGc@._V1_.jpg"
-        onVerDetalle={() => cambiarVista("detalle")}
-      />
+    <main
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        gap: "16px",
+        padding: "16px"
+      }}
+    >
+      {peliculas.map((pelicula) => (
+        <MovieCard
+          key={pelicula.id}
+          title={pelicula.titulo}
+          image={pelicula.imagen}
+          description={pelicula.sinopsis}
+          onVerDetalle={() => verDetalle(pelicula)}
+          isFavorite={favoritos.includes(pelicula.id)}
+          onToggleFavorite={() => toggleFavorito(pelicula.id)}
+        />
+      ))}
     </main>
-  )
+  );
 }
 
-// Exportamos la vista
 export default Cartelera

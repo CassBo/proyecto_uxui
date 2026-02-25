@@ -1,60 +1,39 @@
-# Plataforma de Cine - Proyecto UX/UI
+# Proyecto UX/UI - Cine App
 
-Este proyecto consiste en la estructura base de una aplicación web desarrollada en React utilizando Vite. Representa una plataforma genérica de cine que servirá como base para futuras adaptaciones visuales (Cinépolis o Cinemex).
+Este proyecto es una aplicación web para un cine, desarrollada con React. A continuación se explica de manera sencilla la estructura de archivos y cómo se cumplen los requerimientos del proyecto.
 
-## 1. Creación del entorno de desarrollo
+## Secciones de Contenido
 
-El proyecto ha sido creado utilizando **Vite** para garantizar un entorno de desarrollo rápido y optimizado.
+El código fuente de las páginas principales se encuentra en la carpeta `src/pages`.
 
-### Instrucciones de ejecución:
+### a) Cartelera
+*   **Archivo**: `src/pages/bilboard.jsx`
+*   **Descripción**: Esta sección muestra las películas disponibles en formato de tarjetas.
+*   **Contenido**: Incluye un listado con al menos 4 películas, permitiendo visualizar sus pósters y detalles básicos.
 
-1.  **Instalar dependencias**:
-    ```bash
-    npm install
-    ```
-2.  **Ejecutar el proyecto**:
-    ```bash
-    npm run dev
-    ```
-3.  **Visualización**:
-    Abrir el navegador en la dirección local indicada (por defecto `http://localhost:5173`).
+### b) Alimentos
+*   **Archivo**: `src/pages/Food.jsx`
+*   **Descripción**: Una sección visual dedicada a la venta de alimentos.
+*   **Categorías**:
+    *   **Bebidas**: (Ej. Refrescos, Aguas)
+    *   **Comestibles**: (Ej. Hot dogs, Nachos)
+    *   **Snacks o dulces**: (Ej. Palomitas, Chocolates)
+*   **Detalle**: Cada categoría cuenta con al menos 2 opciones de alimentos.
 
-## 2. Estructura del proyecto
+### c) Otros
+*   **Archivo**: `src/pages/Otros.jsx`
+*   **Descripción**: Sección que agrupa elementos secundarios de la experiencia del cine.
+*   **Contenido**:
+    *   Promociones
+    *   Membresías
+    *   Preventas
+    *   Formatos especiales
 
-El proyecto sigue una organización modular para facilitar el mantenimiento y la escalabilidad:
+## Componentes Estilizados
 
-*   **`src/`**: Carpeta raíz del código fuente.
-*   **`src/components/`**: Contiene los componentes reutilizables de la interfaz.
-    *   `Header.jsx`
-    *   `MovieCard.jsx`
-    *   `Button.jsx`
-*   **`src/App.jsx`**: Componente principal que orquesta la estructura de la página.
+Los bloques de construcción de la interfaz se encuentran principalmente en `src/components`.
 
-## 3. Componentes Base
-
-Se han desarrollado tres componentes funcionales clave para cumplir con los requisitos:
-
-### a) Header (`src/components/Header.jsx`)
-Componente funcional que renderiza el encabezado de la aplicación, proporcionando identidad visual a la plataforma.
-
-### b) Botón (`src/components/Button.jsx`)
-Un componente reutilizable que acepta propiedades (`props`) para personalizar su texto y comportamiento (`onClick`), permitiendo estandarizar los botones en toda la app.
-
-### c) Tarjeta de película (`src/components/MovieCard.jsx`)
-Componente que representa la ficha de una película.
-*   Recibe el título y la URL de la imagen como `props`.
-*   Integra y reutiliza el componente **Button** para la acción de "Ver horarios".
-
-## 4. Integración en App.jsx
-
-El archivo `App.jsx` actúa como el contenedor principal donde se ensamblan los componentes:
-
-1.  **Importación**: Se importan los componentes `Header` y `MovieCard`.
-2.  **Datos**: Se define una lista de objetos (`movies`) que contiene la información de las películas (ID, título, imagen).
-3.  **Renderizado**:
-    *   Se muestra el `<Header />`.
-    *   Se utiliza el método `.map()` sobre la lista de películas para renderizar dinámicamente un componente `<MovieCard />` por cada elemento, pasando los datos correspondientes como propiedades.
-
----
-**Asignatura:** UX/UI - Unidad I
-**Objetivo:** Crear la estructura base de una aplicación web en React.
+*   **Reutilización**: Se utilizan componentes para elementos repetitivos (como las tarjetas de las películas o los ítems del menú) para evitar duplicar código.
+*   **Estilos**:
+    *   Los estilos globales y específicos aseguran que la aplicación se vea bien.
+    *   Existe una **coherencia visual** (colores, fuentes, espaciados) que se mantiene a través de las secciones de Cartelera, Alimentos y Otros.
