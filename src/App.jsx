@@ -3,6 +3,7 @@ import { useState } from "react"
 
 // Componentes
 import Header from "./components/Header"
+import SearchBar from "./components/SearchBar"
 
 // Vistas
 import Home from "./pages/Home"
@@ -11,23 +12,26 @@ import Detalle from "./pages/Details"
 import Food from "./pages/Food"
 import Otros from "./pages/Otros"
 
+// Estilos
+import './App.css';
+
 function App() {
-  // Estado que controla qué vista se muestra
+  // Estados
   const [vistaActual, setVistaActual] = useState("home")
-
-  // Aquí nos permite guardar alguna película seleccionada
   const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null)
-
-  // Estado para lista de favoritos (Interacción dinámica 1)
   const [favoritos, setFavoritos] = useState([])
+  const [searchTerm, setSearchTerm] = useState("");
 
-  // Función para ir a detalle enviando datos
+  // Funciones de navegación y estado
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+  };
+
   function verDetalle(pelicula) {
     setPeliculaSeleccionada(pelicula)
     setVistaActual("detalle")
   }
 
-  // Función para agregar/quitar favoritos
   function toggleFavorito(id) {
     if (favoritos.includes(id)) {
       setFavoritos(favoritos.filter(favId => favId !== id))
@@ -37,37 +41,48 @@ function App() {
   }
 
   return (
-    // Contenedor raíz de la aplicación
-    <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
-      {/* Header puede cambiar la vista */}
+    <div>
       <Header cambiarVista={setVistaActual} />
 
-      {/* Renderizado condicional de vistas */}
-      {vistaActual === "home" && (
-        <Home 
-          verDetalle={verDetalle} 
-          favoritos={favoritos}
-          toggleFavorito={toggleFavorito}
-        />
-      )}
+      <main className="main-container">
+        {(vistaActual === "home" || vistaActual === "cartelera") && (
+          <SearchBar 
+            searchTerm={searchTerm} 
+            onSearchChange={handleSearchChange} 
+          />
+        )}
 
-      {vistaActual === "cartelera" && (
-        <Cartelera 
-          verDetalle={verDetalle}
-          favoritos={favoritos}
-          toggleFavorito={toggleFavorito}
-        />
-      )}
+        {vistaActual === "home" && (
+          <Home 
+            verDetalle={verDetalle} 
+            favoritos={favoritos}
+            toggleFavorito={toggleFavorito}
+            searchTerm={searchTerm}
+          />
+        )}
 
-      {vistaActual === "detalle" && (
-        <Detalle pelicula={peliculaSeleccionada} />
-      )}
+        {vistaActual === "cartelera" && (
+          <Cartelera 
+            verDetalle={verDetalle}
+            favoritos={favoritos}
+            toggleFavorito={toggleFavorito}
+            searchTerm={searchTerm}
+          />
+        )}
 
-      {vistaActual === "food" && <Food />}
-      {vistaActual === "otros" && <Otros />}
+        {vistaActual === "detalle" && (
+          // 1. Pasar la función cambiarVista a Detalle
+          <Detalle 
+            pelicula={peliculaSeleccionada} 
+            cambiarVista={setVistaActual} 
+          />
+        )}
+
+        {vistaActual === "food" && <Food />}
+        {vistaActual === "otros" && <Otros />}
+      </main>
     </div>
   )
 }
 
-// Exportamos App
 export default App
