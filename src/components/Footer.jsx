@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link
 
-function Footer({ cambiarVista }) {
+function Footer() { // Removed cambiarVista prop
   // Estilos constantes
   const footerStyle = {
     backgroundColor: '#333',
@@ -64,14 +65,14 @@ function Footer({ cambiarVista }) {
           <h4 style={sectionTitleStyle}>Cartelera</h4>
           <ul style={listStyle}>
             <li style={listItemStyle}>
-              <button 
-                onClick={() => cambiarVista('cartelera')} 
+              <Link 
+                to="/cartelera" // Use Link for navigation
                 style={linkStyle}
                 onMouseOver={(e) => e.target.style.color = '#fff'}
                 onMouseOut={(e) => e.target.style.color = '#ddd'}
               >
                 Cartelera
-              </button>
+              </Link>
             </li>
             <li style={listItemStyle}><span style={textStyle}>Garantía Cinépolis</span></li>
             <li style={listItemStyle}><span style={textStyle}>+Que Cine</span></li>
@@ -84,14 +85,14 @@ function Footer({ cambiarVista }) {
           <h4 style={sectionTitleStyle}>Legales</h4>
           <ul style={listStyle}>
             <li style={listItemStyle}>
-              <button 
-                onClick={() => cambiarVista('terminos')} 
+              <Link 
+                to="/terminos" // Use Link for navigation
                 style={linkStyle}
                 onMouseOver={(e) => e.target.style.color = '#fff'}
                 onMouseOut={(e) => e.target.style.color = '#ddd'}
               >
                 Términos y condiciones
-              </button>
+              </Link>
             </li>
             <li style={listItemStyle}><span style={textStyle}>Aviso de privacidad</span></li>
             <li style={listItemStyle}><span style={textStyle}>Términos Cinecash</span></li>
@@ -103,14 +104,14 @@ function Footer({ cambiarVista }) {
           <h4 style={sectionTitleStyle}>¿Quiénes somos?</h4>
           <ul style={listStyle}>
             <li style={listItemStyle}>
-              <button 
-                onClick={() => cambiarVista('quienes-somos')} 
+              <Link 
+                to="/quienes-somos" // Use Link for navigation
                 style={linkStyle}
                 onMouseOver={(e) => e.target.style.color = '#fff'}
                 onMouseOut={(e) => e.target.style.color = '#ddd'}
               >
                 ¿Quiénes somos?
-              </button>
+              </Link>
             </li>
             <li style={listItemStyle}><span style={textStyle}>Próximas Aperturas</span></li>
             <li style={listItemStyle}><span style={textStyle}>Cinépolis Jobs</span></li>

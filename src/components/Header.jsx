@@ -1,6 +1,19 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-function Header({ cambiarVista }) {
+function Header() {
+  const navLinkStyles = ({ isActive }) => ({
+    background: 'none',
+    border: 'none',
+    color: isActive ? '#ffc107' : 'white', // Highlight active link
+    cursor: 'pointer',
+    fontSize: '1rem',
+    textDecoration: 'none', // Remove underline
+    padding: '0.5rem 1rem',
+    borderRadius: '4px',
+    transition: 'color 0.3s ease',
+  });
+
   return (
     <header className="header" style={{ 
       display: 'flex', 
@@ -11,12 +24,15 @@ function Header({ cambiarVista }) {
       color: 'white',
       boxShadow: '0 2px 4px rgba(0,0,0,0.5)'
     }}>
-      <h1 style={{ margin: 0, cursor: 'pointer', color: '#ffffff' }} onClick={() => cambiarVista('home')}>Cines Botello</h1>
+      <NavLink to="/" style={{ margin: 0, cursor: 'pointer', color: '#ffffff', textDecoration: 'none' }}>
+        <h1 style={{ margin: 0 }}>Cines Botello</h1>
+      </NavLink>
       <nav style={{ display: 'flex', gap: '1rem' }}>
-        <button onClick={() => cambiarVista('home')} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1rem' }}>Inicio</button>
-        <button onClick={() => cambiarVista('cartelera')} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1rem' }}>Cartelera</button>
-        <button onClick={() => cambiarVista('food')} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1rem' }}>Alimentos</button>
-        <button onClick={() => cambiarVista('otros')} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1rem' }}>Otros</button>
+        <NavLink to="/" style={navLinkStyles}>Inicio</NavLink>
+        <NavLink to="/cartelera" style={navLinkStyles}>Cartelera</NavLink>
+        <NavLink to="/alimentos" style={navLinkStyles}>Alimentos</NavLink>
+        <NavLink to="/otros" style={navLinkStyles}>Otros</NavLink>
+        <NavLink to="/about" style={navLinkStyles}>Acerca de</NavLink> {/* New additional page link */}
       </nav>
     </header>
   );

@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import MovieCard from "../components/MovieCard";
 import Hero from "../components/Hero"; // 1. Importar Hero
-
-function Home({ verDetalle, favoritos, toggleFavorito, searchTerm }) {
-  const [peliculas, setPeliculas] = useState([]);
-  const [peliculaDestacada, setPeliculaDestacada] = useState(null);
-  const [estrenos, setEstrenos] = useState([]);
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
@@ -13,6 +9,12 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+function Home({ favoritos, toggleFavorito, searchTerm }) { // Removed verDetalle prop
+  const [peliculas, setPeliculas] = useState([]);
+  const [peliculaDestacada, setPeliculaDestacada] = useState(null);
+  const [estrenos, setEstrenos] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     fetch("/detalles.json")
@@ -33,6 +35,11 @@ import 'swiper/css/pagination';
   const estrenosFiltrados = estrenos.filter(pelicula =>
     pelicula.titulo.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // New function to handle navigation to movie detail
+  const handleVerDetalle = (pelicula) => {
+    navigate(`/peliculas/${pelicula.id}`);
+  };
 
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px" }}>
@@ -92,7 +99,7 @@ import 'swiper/css/pagination';
             title={pelicula.titulo}
             image={pelicula.imagen}
             description={pelicula.sinopsis}
-            onVerDetalle={() => verDetalle(pelicula)}
+            onVerDetalle={() => handleVerDetalle(pelicula)} // Use new handler
             isFavorite={favoritos.includes(pelicula.id)}
             onToggleFavorite={() => toggleFavorito(pelicula.id)}
           />
