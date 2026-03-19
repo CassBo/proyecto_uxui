@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '../components/Button';
-import '../App.css'; // Importamos los estilos globales
+import '../App.css';
 
 function Otros() {
+  // Contenido estático para la sección "Más Servicios"
   const seccionesEstaticas = [
     {
       titulo: "Promociones",
@@ -26,27 +27,27 @@ function Otros() {
     }
   ];
 
-  // Estado para datos dinámicos
-  const [noticias, setNoticias] = useState([]);
-
-  // Consumo de datos dinámicos (simulado con JSONPlaceholder)
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts?_limit=3')
-      .then(response => response.json())
-      .then(data => {
-        // Transformamos los datos para que parezcan noticias de cine
-        const noticiasAdaptadas = data.map(item => ({
-          id: item.id,
-          titulo: `Noticia de Cine: ${item.title.substring(0, 20)}...`,
-          cuerpo: item.body
-        }));
-        setNoticias(noticiasAdaptadas);
-      })
-      .catch(error => console.error('Error al cargar noticias:', error));
-  }, []);
+  // Contenido estático para las noticias de cine
+  const noticiasDeCine = [
+    {
+      id: 1,
+      titulo: "Secuela de 'Dune' confirma su fecha de rodaje",
+      cuerpo: "El director Denis Villeneuve ha anunciado que la producción de la esperada secuela comenzará en otoño, con Timothée Chalamet y Zendaya regresando a sus papeles."
+    },
+    {
+      id: 2,
+      titulo: "Nuevo tráiler de 'The Batman' sorprende a los fans",
+      cuerpo: "Un nuevo avance muestra más de la oscura y cruda versión de Gotham, con Robert Pattinson como un Bruce Wayne más joven y atormentado."
+    },
+    {
+      id: 3,
+      titulo: "Estudio independiente gana el gran premio en Cannes",
+      cuerpo: "La película 'El Eco del Silencio', un drama de bajo presupuesto, se llevó la Palma de Oro, destacando por su guion original y actuaciones conmovedoras."
+    }
+  ];
 
   return (
-    <main className="responsive-grid">
+    <div className="responsive-grid">
       <h2 style={{ gridColumn: '1 / -1', textAlign: "center", marginBottom: "1rem", color: "#333" }}>Más Servicios</h2>
       {seccionesEstaticas.map((seccion, index) => (
         <div key={index} className="movie-card">
@@ -65,16 +66,16 @@ function Otros() {
         </div>
       ))}
 
-      <h2 style={{ gridColumn: '1 / -1', textAlign: "center", margin: "2rem 0 1rem", color: "#333" }}>Últimas Noticias (Dinámico)</h2>
-      {noticias.map((noticia) => (
-        <div key={noticia.id} className="movie-card" style={{ backgroundColor: '#fffbe6' }}>
+      <h2 style={{ gridColumn: '1 / -1', textAlign: "center", margin: "2rem 0 1rem", color: "#333" }}>Últimas Noticias</h2>
+      {noticiasDeCine.map((noticia) => (
+        <div key={noticia.id} className="movie-card" style={{ backgroundColor: '#f8f9fa' }}>
           <div className="movie-info">
-            <h3 style={{ marginTop: 0, color: "#d32f2f" }}>{noticia.titulo}</h3>
+            <h3 style={{ marginTop: 0, color: "#b20710" }}>{noticia.titulo}</h3>
             <p style={{ color: "#555", lineHeight: "1.5" }}>{noticia.cuerpo}</p>
           </div>
         </div>
       ))}
-    </main>
+    </div>
   );
 }
 

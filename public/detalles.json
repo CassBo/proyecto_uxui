@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titulo": "Avatar: Fuego y Cenizas",
+    "imagen": "https://m.media-amazon.com/images/M/MV5BYjZjNDdkZmYtYmFlZS00NzU5LThhNTEtMjkyNGJhNzk5OWUzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "sinopsis": "Regresa a Pandora en una nueva aventura épica donde Jake Sully y Neytiri deben enfrentar una amenaza antigua que resurge de las cenizas."
+  },
+  {
+    "id": 2,
+    "titulo": "¡Ayuda!",
+    "imagen": "https://lumiere-a.akamaihd.net/v1/images/ayuda_poster_a657c33f.jpeg",
+    "sinopsis": "Una historia conmovedora y llena de acción que sigue a un grupo de héroes inesperados en su misión para salvar lo que más aman."
+  },
+  {
+    "id": 3,
+    "titulo": "Arco",
+    "imagen": "https://poluxweb.com/Polux3/images/data/cine/resenas/2026/febrero/Arco/Arco-01.jpg",
+    "sinopsis": "Un viaje visualmente deslumbrante a través de mundos fantásticos, explorando el poder de la esperanza y la determinación."
+  },
+  {
+    "id": 101,
+    "titulo": "Shingeki No Kyojin: The Final Season",
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMzVhOGMzYzQtNzgyMi00NjZmLWEzYjUtMjQ2NDE3Njk4MmRkXkEyXkFqcGc@._V1_.jpg",
+    "sinopsis": "La batalla final por la humanidad ha comenzado."
+  },
+  {
+    "id": 102,
+    "titulo": "Bob Esponja: Al Rescate",
+    "imagen": "https://m.media-amazon.com/images/M/MV5BNjAyZDQwOTktZjc0Yi00MzNjLWI1NmUtODI2ZjJmYWRjOTA3XkEyXkFqcGc@._V1_.jpg",
+    "sinopsis": "Bob Esponja y Patricio viven una nueva aventura submarina."
+  }
+]

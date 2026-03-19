@@ -1,5 +1,11 @@
+import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
-import peliculas from "../detalles.json";
+import Hero from "../components/Hero"; // 1. Importar Hero
+
+function Home({ verDetalle, favoritos, toggleFavorito, searchTerm }) {
+  const [peliculas, setPeliculas] = useState([]);
+  const [peliculaDestacada, setPeliculaDestacada] = useState(null);
+  const [estrenos, setEstrenos] = useState([]);
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
@@ -8,11 +14,29 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-function Home({ verDetalle, favoritos, toggleFavorito }) {
+  useEffect(() => {
+    fetch("/detalles.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setPeliculas(data);
+        if (data.length > 0) {
+          // 3. La primera película es la destacada
+          setPeliculaDestacada(data[0]);
+          // El resto son los "estrenos"
+          setEstrenos(data.slice(1));
+        }
+      })
+      .catch((error) => console.error("Error al cargar las películas:", error));
+  }, []);
+
+  // 5. La búsqueda ahora filtra los estrenos
+  const estrenosFiltrados = estrenos.filter(pelicula =>
+    pelicula.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "16px" }}>
-      
+
       {/* Carrusel Swiper */}
       <div style={{ height: "400px", marginBottom: "30px", borderRadius: "8px", overflow: "hidden" }}>
         <Swiper
@@ -26,24 +50,24 @@ function Home({ verDetalle, favoritos, toggleFavorito }) {
         >
           {peliculas.slice(0, 5).map((pelicula) => (
             <SwiperSlide key={`slide-${pelicula.id}`}>
-              <div 
-                style={{ 
-                  width: "100%", 
-                  height: "100%", 
-                  backgroundImage: `url(${pelicula.imagen})`, 
-                  backgroundSize: "cover", 
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  backgroundImage: `url(${pelicula.imagen})`,
+                  backgroundSize: "cover",
                   backgroundPosition: "center",
                   display: "flex",
                   alignItems: "flex-end",
                   justifyContent: "center"
                 }}
               >
-                <div style={{ 
-                  backgroundColor: "rgba(0, 0, 0, 0.6)", 
-                  color: "white", 
-                  width: "100%", 
-                  padding: "20px", 
-                  textAlign: "center" 
+                <div style={{
+                  backgroundColor: "rgba(0, 0, 0, 0.6)",
+                  color: "white",
+                  width: "100%",
+                  padding: "20px",
+                  textAlign: "center"
                 }}>
                   <h2 style={{ margin: "0 0 10px 0" }}>{pelicula.titulo}</h2>
                   <p style={{ margin: 0 }}>{pelicula.sinopsis.substring(0, 100)}...</p>
