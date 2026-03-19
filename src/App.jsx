@@ -3,6 +3,7 @@ import { useState } from "react"
 
 // Componentes
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 // Vistas
 import Home from "./pages/Home"
@@ -10,6 +11,8 @@ import Cartelera from "./pages/bilboard"
 import Detalle from "./pages/Details"
 import Food from "./pages/Food"
 import Otros from "./pages/Otros"
+import Terminos from "./pages/Terminos"
+import QuienesSomos from "./pages/QuienesSomos"
 
 function App() {
   // Estado que controla qué vista se muestra
@@ -38,33 +41,39 @@ function App() {
 
   return (
     // Contenedor raíz de la aplicación
-    <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5", display: "flex", flexDirection: "column" }}>
       {/* Header puede cambiar la vista */}
       <Header cambiarVista={setVistaActual} />
 
       {/* Renderizado condicional de vistas */}
-      {vistaActual === "home" && (
-        <Home 
-          verDetalle={verDetalle} 
-          favoritos={favoritos}
-          toggleFavorito={toggleFavorito}
-        />
-      )}
+      <div style={{ flex: 1 }}>
+        {vistaActual === "home" && (
+          <Home 
+            verDetalle={verDetalle} 
+            favoritos={favoritos}
+            toggleFavorito={toggleFavorito}
+          />
+        )}
 
-      {vistaActual === "cartelera" && (
-        <Cartelera 
-          verDetalle={verDetalle}
-          favoritos={favoritos}
-          toggleFavorito={toggleFavorito}
-        />
-      )}
+        {vistaActual === "cartelera" && (
+          <Cartelera 
+            verDetalle={verDetalle}
+            favoritos={favoritos}
+            toggleFavorito={toggleFavorito}
+          />
+        )}
 
-      {vistaActual === "detalle" && (
-        <Detalle pelicula={peliculaSeleccionada} />
-      )}
+        {vistaActual === "detalle" && (
+          <Detalle pelicula={peliculaSeleccionada} />
+        )}
 
-      {vistaActual === "food" && <Food />}
-      {vistaActual === "otros" && <Otros />}
+        {vistaActual === "food" && <Food />}
+        {vistaActual === "otros" && <Otros />}
+        {vistaActual === "terminos" && <Terminos />}
+        {vistaActual === "quienes-somos" && <QuienesSomos />}
+      </div>
+
+      <Footer cambiarVista={setVistaActual} />
     </div>
   )
 }
