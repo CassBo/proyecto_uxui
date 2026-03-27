@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import Button from "../components/Button";
 import Modal from "../components/Modal";
+import { getMovieById } from "../services/movieService";
 
 function MovieDetail() {
   const { id } = useParams();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const [pelicula, setPelicula] = useState(null);
   const [nombre, setNombre] = useState("");
   const [cantidadBoletos, setCantidadBoletos] = useState(1);
@@ -15,13 +16,11 @@ function MovieDetail() {
 
   useEffect(() => {
     if (id) {
-      fetch("/detalles.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const foundPelicula = data.find(p => p.id.toString() === id);
-          setPelicula(foundPelicula);
-        })
-        .catch((error) => console.error("Error al cargar los detalles de la película:", error));
+      const fetchMovie = async () => {
+        const data = await getMovieById(id);
+        setPelicula(data);
+      };
+      fetchMovie();
     }
   }, [id]);
 
@@ -29,10 +28,9 @@ function MovieDetail() {
     return (
       <div className="responsive-detail" style={{ textAlign: "center" }}>
         <h2>Cargando detalles de la película...</h2>
-        {/* Optionally, add a button to go back if movie not found or still loading */}
         <Button 
           text="Regresar al inicio" 
-          onClick={() => navigate("/")} // Use navigate to go back to home
+          onClick={() => navigate("/")} 
           className="secondary-button"
         />
       </div>
@@ -60,7 +58,7 @@ function MovieDetail() {
       <div style={{ marginBottom: '20px' }}>
         <Button 
           text="‹ Regresar" 
-          onClick={() => navigate(-1)} // Go back to previous page
+          onClick={() => navigate(-1)}
           className="custom-button secondary-button"
           style={{ width: 'auto', padding: '10px 20px' }}
         />

@@ -1,31 +1,29 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import { getMovies } from "../services/movieService";
 
-function Cartelera({ favoritos, toggleFavorito, searchTerm }) { // Removed verDetalle prop
+function Cartelera({ favoritos, toggleFavorito, searchTerm }) {
   const [peliculas, setPeliculas] = useState([]);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. Cargar datos dinámicamente
-    fetch("/detalles.json")
-      .then((response) => response.json())
-      .then((data) => setPeliculas(data))
-      .catch((error) => console.error("Error al cargar las películas:", error));
+    const fetchMovies = async () => {
+      const data = await getMovies();
+      setPeliculas(data);
+    };
+    fetchMovies();
   }, []);
 
-  // 3. Filtrar las películas
   const peliculasFiltradas = peliculas.filter(pelicula => 
     pelicula.titulo.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // New function to handle navigation to movie detail
   const handleVerDetalle = (pelicula) => {
     navigate(`/peliculas/${pelicula.id}`);
   };
 
   return (
-    // 2. Usar la clase CSS para el layout
     <div className="responsive-grid">
       {peliculasFiltradas.length > 0 ? (
         peliculasFiltradas.map((pelicula) => (
@@ -34,7 +32,7 @@ function Cartelera({ favoritos, toggleFavorito, searchTerm }) { // Removed verDe
             title={pelicula.titulo}
             image={pelicula.imagen}
             description={pelicula.sinopsis}
-            onVerDetalle={() => handleVerDetalle(pelicula)} // Use new handler
+            onVerDetalle={() => handleVerDetalle(pelicula)}
             isFavorite={favoritos.includes(pelicula.id)}
             onToggleFavorite={() => toggleFavorito(pelicula.id)}
           />

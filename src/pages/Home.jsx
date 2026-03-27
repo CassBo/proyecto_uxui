@@ -1,42 +1,31 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
-import Hero from "../components/Hero"; // 1. Importar Hero
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { getMovies } from "../services/movieService";
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-function Home({ favoritos, toggleFavorito, searchTerm }) { // Removed verDetalle prop
+function Home({ favoritos, toggleFavorito, searchTerm }) {
   const [peliculas, setPeliculas] = useState([]);
-  const [peliculaDestacada, setPeliculaDestacada] = useState(null);
   const [estrenos, setEstrenos] = useState([]);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/detalles.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setPeliculas(data);
-        if (data.length > 0) {
-          // 3. La primera película es la destacada
-          setPeliculaDestacada(data[0]);
-          // El resto son los "estrenos"
-          setEstrenos(data.slice(1));
-        }
-      })
-      .catch((error) => console.error("Error al cargar las películas:", error));
+    const fetchMovies = async () => {
+      const data = await getMovies();
+      setPeliculas(data);
+      if (data.length > 0) {
+        setEstrenos(data.slice(1));
+      }
+    };
+    fetchMovies();
   }, []);
 
-  // 5. La búsqueda ahora filtra los estrenos
-  const estrenosFiltrados = estrenos.filter(pelicula =>
-    pelicula.titulo.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  // New function to handle navigation to movie detail
   const handleVerDetalle = (pelicula) => {
     navigate(`/peliculas/${pelicula.id}`);
   };
@@ -99,7 +88,7 @@ function Home({ favoritos, toggleFavorito, searchTerm }) { // Removed verDetalle
             title={pelicula.titulo}
             image={pelicula.imagen}
             description={pelicula.sinopsis}
-            onVerDetalle={() => handleVerDetalle(pelicula)} // Use new handler
+            onVerDetalle={() => handleVerDetalle(pelicula)}
             isFavorite={favoritos.includes(pelicula.id)}
             onToggleFavorite={() => toggleFavorito(pelicula.id)}
           />
